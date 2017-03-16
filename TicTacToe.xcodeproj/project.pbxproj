@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C69CC6E1D20064E000A8B22 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69CC6D1D20064E000A8B22 /* Tournament.swift */; };
 		DC754C201CF35E6C007C13C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C1F1CF35E6C007C13C0 /* AppDelegate.swift */; };
-		DC754C221CF35E6C007C13C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C211CF35E6C007C13C0 /* ViewController.swift */; };
 		DC754C251CF35E6C007C13C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC754C231CF35E6C007C13C0 /* Main.storyboard */; };
 		DC754C271CF35E6C007C13C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC754C261CF35E6C007C13C0 /* Assets.xcassets */; };
 		DC754C2A1CF35E6C007C13C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC754C281CF35E6C007C13C0 /* LaunchScreen.storyboard */; };
+		DC754C331CF35EF6007C13C0 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C321CF35EF6007C13C0 /* TicTacToeViewController.swift */; };
+		DC754C351CF36035007C13C0 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C341CF36035007C13C0 /* TicTacToe.swift */; };
+		DC754C381CF36076007C13C0 /* TicTacToeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C371CF36076007C13C0 /* TicTacToeViewCell.swift */; };
+		DC754C3D1CF362A5007C13C0 /* BoardMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C3C1CF362A5007C13C0 /* BoardMark.swift */; };
+		DC754C3F1CF3647F007C13C0 /* MarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C3E1CF3647F007C13C0 /* MarkView.swift */; };
+		DC7DF0761CF3B921005A2C19 /* TicTacToeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DF0751CF3B921005A2C19 /* TicTacToeFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C69CC6D1D20064E000A8B22 /* Tournament.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 		DC754C1C1CF35E6C007C13C0 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC754C1F1CF35E6C007C13C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC754C211CF35E6C007C13C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DC754C241CF35E6C007C13C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC754C261CF35E6C007C13C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC754C291CF35E6C007C13C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC754C2B1CF35E6C007C13C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC754C321CF35EF6007C13C0 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
+		DC754C341CF36035007C13C0 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
+		DC754C371CF36076007C13C0 /* TicTacToeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeViewCell.swift; sourceTree = "<group>"; };
+		DC754C3C1CF362A5007C13C0 /* BoardMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMark.swift; sourceTree = "<group>"; };
+		DC754C3E1CF3647F007C13C0 /* MarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkView.swift; sourceTree = "<group>"; };
+		DC7DF0751CF3B921005A2C19 /* TicTacToeFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +67,43 @@
 			isa = PBXGroup;
 			children = (
 				DC754C1F1CF35E6C007C13C0 /* AppDelegate.swift */,
-				DC754C211CF35E6C007C13C0 /* ViewController.swift */,
-				DC754C231CF35E6C007C13C0 /* Main.storyboard */,
+				DC754C361CF3603D007C13C0 /* Model */,
+				DC754C391CF3608B007C13C0 /* View */,
+				DC754C311CF35EC7007C13C0 /* Controller */,
 				DC754C261CF35E6C007C13C0 /* Assets.xcassets */,
 				DC754C281CF35E6C007C13C0 /* LaunchScreen.storyboard */,
 				DC754C2B1CF35E6C007C13C0 /* Info.plist */,
 			);
 			path = TicTacToe;
+			sourceTree = "<group>";
+		};
+		DC754C311CF35EC7007C13C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC754C321CF35EF6007C13C0 /* TicTacToeViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DC754C361CF3603D007C13C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC754C3C1CF362A5007C13C0 /* BoardMark.swift */,
+				DC754C341CF36035007C13C0 /* TicTacToe.swift */,
+				2C69CC6D1D20064E000A8B22 /* Tournament.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DC754C391CF3608B007C13C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DC754C3E1CF3647F007C13C0 /* MarkView.swift */,
+				DC754C371CF36076007C13C0 /* TicTacToeViewCell.swift */,
+				DC7DF0751CF3B921005A2C19 /* TicTacToeFooterView.swift */,
+				DC754C231CF35E6C007C13C0 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,11 +133,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Unatezesoft, LLC";
 				TargetAttributes = {
 					DC754C1B1CF35E6C007C13C0 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -135,8 +178,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC754C221CF35E6C007C13C0 /* ViewController.swift in Sources */,
+				2C69CC6E1D20064E000A8B22 /* Tournament.swift in Sources */,
+				DC754C331CF35EF6007C13C0 /* TicTacToeViewController.swift in Sources */,
+				DC754C3D1CF362A5007C13C0 /* BoardMark.swift in Sources */,
+				DC754C381CF36076007C13C0 /* TicTacToeViewCell.swift in Sources */,
+				DC754C351CF36035007C13C0 /* TicTacToe.swift in Sources */,
+				DC7DF0761CF3B921005A2C19 /* TicTacToeFooterView.swift in Sources */,
 				DC754C201CF35E6C007C13C0 /* AppDelegate.swift in Sources */,
+				DC754C3F1CF3647F007C13C0 /* MarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +224,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -219,8 +270,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -239,6 +292,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -251,6 +305,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unatezesoft.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -262,6 +317,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unatezesoft.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -284,6 +340,7 @@
 				DC754C301CF35E6C007C13C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
