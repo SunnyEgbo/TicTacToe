@@ -98,7 +98,7 @@ class TicTacToe
     }
 
     /// Calculates a move for player 2
-    /// To start, Look for a winning next move to take.
+    /// To start, look for a winning next move to take.
     /// If none, then look for a winning move for player 1 to block.
     /// Otherwise, look for a couple of well known patterns.
     /// Finally, choose a random available position when all else fails.
@@ -117,7 +117,7 @@ class TicTacToe
                     break    // Found a winning position for player 2, stop searching and take it
                 }
                 else if winsBoard(xBoard, withPosition: i) {
-                    nextWinningPositionForPlayer1 = i  // player 1's potential winning position that can be to blocked
+                    nextWinningPositionForPlayer1 = i  // player 1's potential winning position that can be blocked
                 }
             }
         }
@@ -160,9 +160,9 @@ class TicTacToe
         return ((xBoard & checkBit) == 0) && ((oBoard & checkBit) == 0)
     }
 
-    /// Private method to determine whether a given player's bitmap (i.e., xBoard and oBoard) is a winner by 
-    /// checking the bitmap against known winning bitmaps. This is done by bitwise 'and' between all known 
-    /// winning bit pattern against player's board
+    /// Private method to determine whether a given player's bitmap (i.e., xBoard and oBoard) 
+    /// is a winner by checking the bitmap against known winning bitmaps. This is done by 
+    /// bitwise 'and' between all known winning bit pattern against player's board
     /// - parameter board: the player's board that need to be checked
     /// - returns: true or false
     
@@ -186,7 +186,8 @@ class TicTacToe
         return []
     }
 
-    /// Private method to return whether a given player's board can win if the player plays a given position
+    /// Private method to return whether a given player's board can win if the player plays
+    /// a given position
     /// - parameter board: the player's board that need to be checked
     /// - parameter position: the position to be checked
     /// - returns: true or false
