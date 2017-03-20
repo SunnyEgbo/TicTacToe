@@ -17,7 +17,7 @@ class MarkView: UIView
 
     //MARK: Public var
     
-    var mark: BoardMark? {
+    var mark: Player? {
         didSet {
             setNeedsDisplay()
         }

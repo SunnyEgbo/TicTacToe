@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C69CC6E1D20064E000A8B22 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69CC6D1D20064E000A8B22 /* Tournament.swift */; };
+		2CA958F41E805364002F660C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA958F31E805364002F660C /* Player.swift */; };
 		DC754C201CF35E6C007C13C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C1F1CF35E6C007C13C0 /* AppDelegate.swift */; };
 		DC754C251CF35E6C007C13C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC754C231CF35E6C007C13C0 /* Main.storyboard */; };
 		DC754C271CF35E6C007C13C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC754C261CF35E6C007C13C0 /* Assets.xcassets */; };
@@ -15,13 +16,13 @@
 		DC754C331CF35EF6007C13C0 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C321CF35EF6007C13C0 /* TicTacToeViewController.swift */; };
 		DC754C351CF36035007C13C0 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C341CF36035007C13C0 /* TicTacToe.swift */; };
 		DC754C381CF36076007C13C0 /* TicTacToeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C371CF36076007C13C0 /* TicTacToeViewCell.swift */; };
-		DC754C3D1CF362A5007C13C0 /* BoardMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C3C1CF362A5007C13C0 /* BoardMark.swift */; };
 		DC754C3F1CF3647F007C13C0 /* MarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC754C3E1CF3647F007C13C0 /* MarkView.swift */; };
 		DC7DF0761CF3B921005A2C19 /* TicTacToeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DF0751CF3B921005A2C19 /* TicTacToeFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C69CC6D1D20064E000A8B22 /* Tournament.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
+		2CA958F31E805364002F660C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		DC754C1C1CF35E6C007C13C0 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC754C1F1CF35E6C007C13C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC754C241CF35E6C007C13C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,7 +32,6 @@
 		DC754C321CF35EF6007C13C0 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
 		DC754C341CF36035007C13C0 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
 		DC754C371CF36076007C13C0 /* TicTacToeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeViewCell.swift; sourceTree = "<group>"; };
-		DC754C3C1CF362A5007C13C0 /* BoardMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMark.swift; sourceTree = "<group>"; };
 		DC754C3E1CF3647F007C13C0 /* MarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkView.swift; sourceTree = "<group>"; };
 		DC7DF0751CF3B921005A2C19 /* TicTacToeFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +88,7 @@
 		DC754C361CF3603D007C13C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DC754C3C1CF362A5007C13C0 /* BoardMark.swift */,
+				2CA958F31E805364002F660C /* Player.swift */,
 				DC754C341CF36035007C13C0 /* TicTacToe.swift */,
 				2C69CC6D1D20064E000A8B22 /* Tournament.swift */,
 			);
@@ -180,11 +180,11 @@
 			files = (
 				2C69CC6E1D20064E000A8B22 /* Tournament.swift in Sources */,
 				DC754C331CF35EF6007C13C0 /* TicTacToeViewController.swift in Sources */,
-				DC754C3D1CF362A5007C13C0 /* BoardMark.swift in Sources */,
 				DC754C381CF36076007C13C0 /* TicTacToeViewCell.swift in Sources */,
 				DC754C351CF36035007C13C0 /* TicTacToe.swift in Sources */,
 				DC7DF0761CF3B921005A2C19 /* TicTacToeFooterView.swift in Sources */,
 				DC754C201CF35E6C007C13C0 /* AppDelegate.swift in Sources */,
+				2CA958F41E805364002F660C /* Player.swift in Sources */,
 				DC754C3F1CF3647F007C13C0 /* MarkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

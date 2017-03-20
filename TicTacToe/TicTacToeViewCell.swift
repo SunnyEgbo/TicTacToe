@@ -16,7 +16,7 @@ class TicTacToeViewCell: UICollectionViewCell
  
     //MARK: Public vars
 
-    var mark: BoardMark? = nil {
+    var mark: Player? = nil {
         didSet {
             markView?.mark = mark
             setNeedsDisplay()

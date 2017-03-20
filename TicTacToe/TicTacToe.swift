@@ -13,6 +13,11 @@ This implementation uses two bitmaps to represent the state of the game board. O
 
 import Foundation
 
+protocol TicTacToeDelegate: class {
+    func computerPlayedPosition(_ position: Int)
+    func player(_ player: Player, wonWithPositions positions: [Int])
+    func gameInStalement()
+}
 
 class TicTacToe
 {
@@ -20,6 +25,7 @@ class TicTacToe
     var numberOfPositions: Int { // readonly
         return 9
     }
+    weak var delegate: TicTacToeDelegate?
     
     //MARK: - Private var
     fileprivate var xBoard = 0
@@ -34,62 +40,67 @@ class TicTacToe
         0x111: [0, 4, 8], // Left Diagonal winning pattern
         0x54:  [2, 4, 6], // Right Diagonal winning pattern
     ]
+    var computerThinking = false
+    
     
     //MARK: - Public func
     
-    /// Plays a position for player 1
+    /// Plays a position for a player
     /// - parameter position: the number position to play for player 1
+    /// - parameter player: the player making the play
+    
+    func playPosition(_ position: Int, forPlayer player: Player)
+    {
+        guard position < numberOfPositions else { return }
+        
+        let toggleBit = 1 << position
+        switch player {
+        case .x:
+            guard !computerThinking else { return }
+            computerThinking = true
+            xBoard = xBoard | toggleBit
+            if isWinnerBoard(xBoard) {
+                delegate?.player(.x, wonWithPositions: positionsOnWinningBoard(xBoard))
+            }
+            else if isWinnerBoard(oBoard) {
+                delegate?.player(.o, wonWithPositions: positionsOnWinningBoard(oBoard))
+            }
+            else if nobodyCanWin() {
+                delegate?.gameInStalement()
+            }
+            else {
+                let nextPosition = nextMoveForPlayer2()
+                delegate?.computerPlayedPosition(nextPosition)
+                playPosition(nextPosition, forPlayer: .o)
+            }
+            computerThinking = false
 
-    func player1PlaysPosition(_ position: Int)
-    {
-        guard position < numberOfPositions else { return }
-        
-        let toggleBit = 1 << position
-        xBoard = xBoard | toggleBit
+        default:
+            oBoard = oBoard | toggleBit
+            if isWinnerBoard(oBoard) {
+                delegate?.player(.o, wonWithPositions: positionsOnWinningBoard(oBoard))
+            }
+            else if nobodyCanWin() {
+                delegate?.gameInStalement()
+            }
+        }
     }
-    
-    /// Plays a position for player 2
-    /// - parameter position: the number position to play for player 2
-    
-    func player2PlaysPosition(_ position: Int)
-    {
-        guard position < numberOfPositions else { return }
-        
-        let toggleBit = 1 << position
-        oBoard = oBoard | toggleBit
-    }
-    
+
+    //MARK: - Private func
+
     /// Returns whether someone can still win the game or that we have reached a stalemate
     /// in the game
     /// - returns: true when the game is in a stalemate, false otherwise
     
-    func nobodyCanWin() -> Bool
-    {
+    fileprivate func nobodyCanWin() -> Bool {
         return ((xBoard | oBoard) == 0x1FF)
-    }
-    
-    /// Returns whether player 1 is the winner
-    /// - returns: true when player 1 is the winner, false otherwise
-
-    func player1Won() -> Bool
-    {
-        return isWinnerBoard(xBoard)
-    }
-    
-    /// Returns whether player 2 is the winner
-    /// - returns: true when player 2 is the winner, false otherwise
-    
-    func player2Won() -> Bool
-    {
-        return isWinnerBoard(oBoard)
     }
     
     /// Returns the positions resulting in a win
     /// - returns: an array of board indices for that resulted in the win
     
-    func winningCells() -> [Int]
-    {
-        if player1Won() {
+    fileprivate func winningCells() -> [Int] {
+        if isWinnerBoard(xBoard) {
             return positionsOnWinningBoard(xBoard)
         }
         else {
@@ -104,8 +115,7 @@ class TicTacToe
     /// Finally, choose a random available position when all else fails.
     /// - returns: a position for player 2 to play
 
-    func nextMoveForPlayer2() -> Int
-    {
+    fileprivate func nextMoveForPlayer2() -> Int {
         var position = 0
         var nextWinningPositionForPlayer1 = -1
         var nextWinningPositionForPlayer2 = -1
@@ -147,8 +157,6 @@ class TicTacToe
     }
     
     
-    //MARK: - Private func
-
     /// Private method to determine whether a given game position is still available by checking 
     /// each player's bitmap (i.e., xBoard and oBoard)
     /// - parameter position: the position to check

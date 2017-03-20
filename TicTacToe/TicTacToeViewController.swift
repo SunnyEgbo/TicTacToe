@@ -13,7 +13,7 @@
 import UIKit
 
 
-class TicTacToeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
+class TicTacToeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TicTacToeDelegate
 {
     
     //MARK: Private var
@@ -33,6 +33,7 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         static let ok = "Ok"
     }
     fileprivate let tournament = Tournament()
+    var gameOver = false
     fileprivate weak var gameFooterView: TicTacToeFooterView!
         
     
@@ -40,6 +41,8 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tournament.game.delegate = self
         
         navigationController?.navigationBar.tintColor = .white
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
@@ -50,8 +53,6 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         self.modalPresentationStyle = .overFullScreen
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
-
-        collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TicTacToeViewController.handleTapGestureRecognizer(_:))))
     }
 
     
@@ -59,65 +60,12 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
     {
         return .lightContent
     }
-    
-    
-    //MARK: - Gestures
-    
-    /// Method to check taps on the collectionView. Determines which individual cell (if any) is tapped.
-    /// If an available cell is tapped, mark that cell for player 1, check whether player 1 won or that there is
-    /// a stalemate. If player 1 didn't win with the move, then draw an available cell for player 2 (i.e, the computer)
-    /// and then check for a win for player 2 (computer) or a stalemate
-    /// - parameter recognizer: the gesture recognizer
 
-    
-    func handleTapGestureRecognizer(_ recognizer: UITapGestureRecognizer)
-    {
-        guard !gameOver() else { return }
-        
-        switch recognizer.state {
-        case .ended:
-            let tappedPoint = recognizer.location(in: collectionView)
-            if let tappedCellPath = collectionView?.indexPathForItem(at: tappedPoint), let cell = collectionView?.cellForItem(at: tappedCellPath) as? TicTacToeViewCell {
-                guard !cell.marked else { return }
-                
-                cell.mark = .x
-                tournament.game.player1PlaysPosition(tappedCellPath.item)
-                if tournament.game.player1Won() {
-                    updateTournamentWithWinner(.x)
-                }
-                else if tournament.game.player2Won() {
-                    updateTournamentWithWinner(.o)
-                }
-                else if tournament.game.nobodyCanWin() {
-                    updateTournamentWithWinner(nil)
-                }
-                else {
-                    let nextPosition = tournament.game.nextMoveForPlayer2()
-                    tournament.game.player2PlaysPosition(nextPosition)
-                    let cellPath = IndexPath(item: nextPosition, section: 0)
-                    if let player2Cell = collectionView?.cellForItem(at: cellPath) as? TicTacToeViewCell {
-                        player2Cell.mark = .o
-                    }                    
-                    if tournament.game.player2Won() {
-                        updateTournamentWithWinner(.o)
-                    }
-                    else if tournament.game.nobodyCanWin() {
-                        updateTournamentWithWinner(nil)
-                    }
-                }
-            }
-        default: break
-        }
-    }
-    
-    
     
     //MARK: - Actions
     
     @IBAction func pressedResetButton(_ sender: UIButton)
     {
-        tournament.newGame()
-        
         for i in 0..<tournament.game.numberOfPositions {
             let path = IndexPath(item: i, section: 0)
             if let cell = collectionView?.cellForItem(at: path) as? TicTacToeViewCell {
@@ -125,6 +73,9 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
                 cell.isInWinningPath = false
             }
         }
+        tournament.newGame()
+        tournament.game.delegate = self
+        gameOver = false
     }
     
     
@@ -158,6 +109,16 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard !gameOver else { return }
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? TicTacToeViewCell {
+            guard !cell.marked else { return }
+            
+            cell.mark = .x
+            tournament.game.playPosition(indexPath.item, forPlayer: .x)
+        }
+    }
 
     // MARK: UICollectionViewDelegateFlowLayout
     
@@ -179,32 +140,30 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         let availableWidth = (collectionView.bounds.width - 2.0*(layout.minimumInteritemSpacing + layout.sectionInset.left + layout.sectionInset.right))
         return CGSize(width: availableWidth/CGFloat(StoryBoard.cellsPerRow), height: availableWidth/CGFloat(StoryBoard.cellsPerRow))
     }
+
     
+    //MARK: - TicTacToeDelegate
     
-    //MARK: - Private
+    func computerPlayedPosition(_ position: Int) {
+        let cellPath = IndexPath(item: position, section: 0)
+        if let cell = collectionView?.cellForItem(at: cellPath) as? TicTacToeViewCell {
+            cell.mark = .o
+        }
+    }
     
-    fileprivate func updateTournamentWithWinner(_ winner: BoardMark?)
-    {
-        if let winner = winner {
-            switch winner {
-            case .x:
-                tournament.gamesWonByX += 1
-            case .o:
-                tournament.gamesWonByO += 1
-            }
+    func player(_ player: Player, wonWithPositions positions: [Int]) {
+        var message: String = ""
+        switch player {
+        case .x:
+            tournament.gamesWonByX += 1
+            message = AlertMessage.youWin
+        default:
+            tournament.gamesWonByO += 1
+            message = AlertMessage.youLoose
         }
         tournament.gamesPlayed += 1
-        showStats()
-    }
-    
-    fileprivate func gameOver() -> Bool
-    {
-        return tournament.game.player1Won() || tournament.game.player2Won() || tournament.game.nobodyCanWin()
-    }
-    
-    fileprivate func markWinningPositions()
-    {
-        let positions = tournament.game.winningCells()
+        gameOver = true
+        showStatsWithMessage(message)
         for position in positions {
             let indexPath = IndexPath(item: position, section: 0)
             if let cell = collectionView?.cellForItem(at: indexPath) as? TicTacToeViewCell {
@@ -213,21 +172,19 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         }
     }
     
-    fileprivate func showStats()
-    {
-        var message: String = ""
-        if tournament.game.player1Won() {
-            message = AlertMessage.youWin
-            markWinningPositions()
-        }
-        else if tournament.game.player2Won() {
-            message = AlertMessage.youLoose
-            markWinningPositions()
-        }
-        else if tournament.game.nobodyCanWin() {
-            message = AlertMessage.nobodyWins
-        }
+    func gameInStalement() {
+        tournament.gamesPlayed += 1
+        gameOver = true
+        showStatsWithMessage(AlertMessage.nobodyWins)
+    }
 
+    
+    
+    //MARK: - Private
+    
+    
+    fileprivate func showStatsWithMessage(_ message: String)
+    {
         let alert = UIAlertController(
             title: AlertMessage.title,
             message: message,
