@@ -108,7 +108,6 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         return cell
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !gameOver else { return }
 
@@ -163,7 +162,8 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
         }
         tournament.gamesPlayed += 1
         gameOver = true
-        showStatsWithMessage(message)
+        gameFooterView.updateStatsForGame(tournament)
+        showAlertMessage(message)
         for position in positions {
             let indexPath = IndexPath(item: position, section: 0)
             if let cell = collectionView?.cellForItem(at: indexPath) as? TicTacToeViewCell {
@@ -175,7 +175,8 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
     func gameInStalement() {
         tournament.gamesPlayed += 1
         gameOver = true
-        showStatsWithMessage(AlertMessage.nobodyWins)
+        gameFooterView.updateStatsForGame(tournament)
+        showAlertMessage(AlertMessage.nobodyWins)
     }
 
     
@@ -183,7 +184,7 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
     //MARK: - Private
     
     
-    fileprivate func showStatsWithMessage(_ message: String)
+    fileprivate func showAlertMessage(_ message: String)
     {
         let alert = UIAlertController(
             title: AlertMessage.title,
@@ -197,8 +198,6 @@ class TicTacToeViewController: UICollectionViewController, UICollectionViewDeleg
 
         }))
      
-        gameFooterView.updateStatsForGame(tournament)
-
         self.present(alert, animated: true, completion: nil)
     }
 
